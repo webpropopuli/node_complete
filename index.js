@@ -11,15 +11,21 @@ const notes = require('./notes.js');
 
 console.log(`App started ->`);
 
-const args = yargs.argv;			// YARGS
+// YARGS handles input like "app --x=y" and creates {x:y}
+const args = yargs.argv;
 
-console.log('args: ', args._[0]);
+//  console.log('args: ', args._[0]);
 var userCommand = _.upperCase(args._[0]);
 
-
-//userCommand = userCommand.toUpperCase();
 if(userCommand == "ADD")
-	notes.addNote(args.title, args.body);
+{
+	var note = notes.addNote(args.title, args.body);
+	if (undefined == note)
+		console.log("No note added.");
+	else {
+		console.log(`-->Title: ${note.title} Note: ${note.body}`);
+	}
+}
 else if (userCommand == "GET")
 	notes.getNote(args.title);
 else if (userCommand == "DEL")
