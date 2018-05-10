@@ -11,10 +11,13 @@ const notes = require('./notes.js');
 
 console.log(`App started ->`);
 
-const args = yargs.argv;	// YARGS
-var userCommand = args[0];
+const args = yargs.argv;			// YARGS
 
-userCommand = userCommand.toUpperCase();
+console.log('args: ', args._[0]);
+var userCommand = _.upperCase(args._[0]);
+
+
+//userCommand = userCommand.toUpperCase();
 if(userCommand == "ADD")
 	notes.addNote(args.title, args.body);
 else if (userCommand == "GET")

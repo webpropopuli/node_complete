@@ -1,16 +1,27 @@
 const fs = require('fs');
 
+
 var origNote = {
 	title: 'A Title',
 	body: 'Here is my body text'
 };
 
-var origJNote = JSON.stringify(origNote);
+// Object --> string
+var origNoteStr = JSON.stringify(origNote);
 
-fs.writeFileSync('notes.json', origJNote);
+fs.writeFileSync('notes.json', origNoteStr);
 
-var readJNote = fs.readFileSync('notes.json');
+var readNoteStr = fs.readFileSync('notes.json');
 
-var readNote = JSON.parse(readJNote);
+var readNote = JSON.parse(readNoteStr);
 
-console.log("from file", readJNote.title);
+// this makes decisions for stringify
+function replacer(key, value) {
+	//if 		(key == 'title') 	return value;
+	return value;
+	}
+
+readNoteStr = JSON.stringify(readNote, replacer)
+
+
+console.log("-->", readNoteStr);
