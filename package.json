@@ -1,17 +1,17 @@
 {
   "name": "nodetutor",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Marlowe working through Mead's Nodejs course",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "David Marlowe @webpropopuli",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.3",
     "lodash": "^4.17.10",
-    "npm": "^6.0.0",
+    "npm": "^6.0.1",
     "yargs": "^11.0.0"
   }
 }
