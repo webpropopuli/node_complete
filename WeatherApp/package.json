@@ -1,0 +1,14 @@
+{
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "Weather App for Nodejs course",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Marlowe",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.85.0"
+  }
+}
