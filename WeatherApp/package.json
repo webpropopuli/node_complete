@@ -1,5 +1,5 @@
 {
-  "name": "weatherapp",
+  "name": "npm",
   "version": "1.0.0",
   "description": "Weather App for Nodejs course",
   "main": "app.js",
@@ -9,6 +9,8 @@
   "author": "David Marlowe",
   "license": "ISC",
   "dependencies": {
-    "request": "^2.85.0"
+    "node": "^10.0.0",
+    "request": "^2.85.0",
+    "yargs": "^11.0.0"
   }
 }

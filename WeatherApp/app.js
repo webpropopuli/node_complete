@@ -1,4 +1,7 @@
 const request = require('request');
+/* This block gets cmdline args. It will get
+   replaced later when frontend is built
+*/
 const yargs = require('yargs')
 const argv = yargs
 	.options({
@@ -13,20 +16,27 @@ const argv = yargs
 	.alias('help', 'h')
 	.argv;
 
-//console.log(argv);
 var addrString = encodeURIComponent(argv.a);
-console.log(addrString);
+//console.log(addrString);
+/* end getting cmdline args */
+
 request({
 	url:
 	"https://maps.googleapis.com/maps/api/geocode/json?address=" +
 	addrString +
 	"&key=AIzaSyDffhOkmuqzPFL8a7Th1XTJUgzSts1sHek",
-// 	"https://webpropopuli.com/",
 //  "https://quotesondesign.com/wp-json/posts/",  // use: console.log(body[0].content);
 	json: true
 
 }, (err, response, body) => {
-
-	console.log( "lat:", body.results[0].geometry.location.lat);
-	console.log("long:", body.results[0].geometry.location.lng);
+// error handling
+	if (err)
+		console.log("Connection error. Unknown type.");
+	else if (body.status == 'ZERO_RESULTS')
+		console.log("Google returned invalid address");
+	else if (body.status == 'OK')
+	{
+		console.log( "lat:", body.results[0].geometry.location.lat);
+		console.log("long:", body.results[0].geometry.location.lng);
+	}
 });
