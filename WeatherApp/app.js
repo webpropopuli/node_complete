@@ -22,7 +22,7 @@ var addrString = encodeURIComponent(argv.a);
 /* end getting cmdline args */
 
 console.log(">> Looking up location...")
-geo.geocodeAddress(addrString, (errMsg, results) => {
+geo.geocodeAddress(addrString) => {
 	if(errMsg)
 		console.log(errMsg);
 	else {

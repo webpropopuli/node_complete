@@ -1,36 +1,37 @@
 const request = require('request');
 const apiKey = "&key=AIzaSyDffhOkmuqzPFL8a7Th1XTJUgzSts1sHek";
-function geocodeAddress(addrString, callback) {
-const url = "https://maps.googleapis.com/maps/api/geocode/json?address=" +
-addrString +
-apiKey;
-//console.log(url);
-request({
-	url: url,
-	//  "https://quotesondesign.com/wp-json/posts/",  // use: console.log(body[0].content);
-	json: true
 
-}, (err, response, body) => {
-// error handling
+geo
+var geocodeAddress = (addrString) => {
+	return new Promise( (happy, sad) => {
+		const url = "https://maps.googleapis.com/maps/api/geocode/json?address=" +
+		addrString +
+		apiKey;
 
-	if (err) {
-		callback("Connection error. Unknown type.");
-	}
-	else if (body.status == 'ZERO_RESULTS') {
-		callback("Google returned invalid address");
-	}
-	else if (body.status == 'OK')
-	{
-		callback(undefined, {
-			addr: body.results[0].formatted_address,
-			lat:  body.results[0].geometry.location.lat,
-			long: body.results[0].geometry.location.lng
-		} );
-	}
-});
+		request({	url: url,
+							json: true
+		},
+			(err, response, body) => {
+
+			if (err) {
+				sad("Connection error. Unknown type.");
+			}
+			else if (body.status == 'ZERO_RESULTS') {
+				sad("Google returned invalid address");
+			}
+			else if (body.status == 'OK')
+			{
+				happy( {
+					addr: body.results[0].formatted_address,
+					lat:  body.results[0].geometry.location.lat,
+					long: body.results[0].geometry.location.lng
+				} );
+			}
+		});
+	});
 
 return undefined;
-} // end func
+}; // end func
 
 module.exports = {
 	geocodeAddress
