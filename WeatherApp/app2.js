@@ -20,7 +20,10 @@ const argv = yargs
 	var geoUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=`
 		+	encAddress + mapsApiKey;
 
-	axios.get(geoUrl)
+	axios({
+		method : 'get',
+		url : geoUrl
+	})
 		.then( (response) => {
 			// Handle 'No_RESULTS error
 			if(response.data.status === 'ZERO_RESULTS')
@@ -32,14 +35,14 @@ const argv = yargs
 			const weatherUrl = "https://api.forecast.io/forecast/" +
 			weatherApiKey + "/" + lat +  "," + lng ;
 
-			console.log(response.data.results[0].formatted_address);
+			console.log("\n***\nCurrently in ", response.data.results[0].formatted_address);
 
 			return axios.get(weatherUrl);
 		})
 				.then( (response) => {
 					var temp = response.data.currently.temperature;
 					var status = response.data.currently.summary;
-					console.log(`It's ${temp} and ${status} right now`);
+					console.log(`it's ${temp} and ${status}\n***`);
 		})
 		.catch( (e) => {
 			if(e.code === 'ENOTFOUND') {
