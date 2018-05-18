@@ -3,21 +3,28 @@ const hbs = require('hbs');
 
 var app = express();
 
+hbs.registerPartials(__dirname + '/views/partials') //set the dir
 app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
 
+hbs.registerHelper('hbThisYear', () => {
+  return new Date().getFullYear()
+});
+
+hbs.registerHelper('hbBigAssText', (text) => {
+  return text.toUpperCase();
+});
+
 app.get('/', (req, res) => {
   res.render('home.hbs', {
-    pageTitle: 'ScraperHeim',
-    welcomeMessage: 'Welcome to Scraperheim, home of YASP (Yet Another Scraper Project)',
-    currentYear: new Date().getFullYear()
+    pageTitle: 'Home Page',
+    welcomeMessage: 'Welcome to my website'
   });
 });
 
 app.get('/about', (req, res) => {
   res.render('about.hbs', {
-    pageTitle: 'About Page',
-    currentYear: new Date().getFullYear()
+    pageTitle: 'About Page'
   });
 });
 
