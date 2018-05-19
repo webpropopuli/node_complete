@@ -1,12 +1,10 @@
 const express = require('express');
 const hbs = require('hbs');
+const PORT = process.env.PORT || 3000;
 
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials') //set the dir
-app.set('view engine', 'hbs');
-app.use(express.static(__dirname + '/public'));
-
 hbs.registerHelper('hbThisYear', () => {
   return new Date().getFullYear()
 });
@@ -15,26 +13,23 @@ hbs.registerHelper('hbBigAssText', (text) => {
   return text.toUpperCase();
 });
 
-app.get('/', (req, res) => {
-  res.render('home.hbs', {
-    pageTitle: 'Home Page',
-    welcomeMessage: 'Welcome to my website'
-  });
-});
-
-app.get('/about', (req, res) => {
-  res.render('about.hbs', {
-    pageTitle: 'About Page'
-  });
-});
-
-// /bad - send back json with errorMessage
-app.get('/bad', (req, res) => {
-  res.send({
-    errorMessage: 'Unable to handle request'
-  });
-});
-
-app.listen(3000, () => {
-  console.log('Server is up on port 3000');
-});
+app
+  .set('view engine', 'hbs')
+  .use(express.static(__dirname + '/public'))
+  .get('/', (req, res) => {
+    res.render('home.hbs', {
+      pageTitle: 'Home Page',
+      welcomeMessage: 'Welcome to my website'
+    });
+  })
+  .get('/about', (req, res) => {
+    res.render('about.hbs', {
+      pageTitle: 'About Page'
+    });
+  })
+  .get('/bad', (req, res) => {// /bad - send back json with errorMessage
+    res.send({
+      errorMessage: 'Unable to handle request'
+    });
+  })
+  .listen(PORT, () => console.log(`Server is up on port ${PORT}`));
