@@ -1,12 +1,16 @@
 {
   "name": "node-web-server",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.2.0",
+  "description": "Getting to a full app",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": {
+    "name": "David Marlowe",
+    "email": "git@webpropopuli.com",
+    "url": "https://cd.webpropopuli.com/"
+  },
   "license": "ISC",
   "dependencies": {
     "express": "^4.14.0",
