@@ -1,10 +1,11 @@
 {
   "name": "node-web-server",
-  "version": "1.2.0",
+  "version": "1.2.5",
   "description": "Getting to a full app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": {
     "name": "David Marlowe",
